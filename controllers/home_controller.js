@@ -26,10 +26,13 @@ module.exports.feedback=function(req,res){
             subject:"Feedback From User",
             html:htmlString2
            })
+
+           req.flash('success','Your message send succesfully');
            return res.redirect('/')
 
 
     }catch(err){
+        req.flash('error','Server Error')
         console.log('********', err);
         return res.json(500, {
             message: "Internal Server Error"
